@@ -4,7 +4,9 @@ from typing import List
 import re
 
 
-def filter_datum(fields: List[str], redaction: str, message: str, seperator: str) -> str:
+def filter_datum(
+        fields: List[str], redaction: str, message: str, seperator: str
+        ) -> str:
     '''obfuscates(make obscure unintelligible) data
     params:
         fields: a list of strings representing all fields to obfuscate
