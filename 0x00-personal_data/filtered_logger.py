@@ -4,16 +4,16 @@ from typing import List
 import re
 
 
-def filter_datum(fields: List[str], red: str, msg: str, delim: str) -> str:
+def filter_datum(fields: List[str], redaction: str, message: str, seperator: str) -> str:
     '''obfuscates(make obscure unintelligible) data
     params:
         fields: a list of strings representing all fields to obfuscate
-        red: redaction a string representing by what the field will be obscured
-        msg: message a string representing the log line
-        delim: a string representing which character is separating
+        redaction a string representing by what the field will be obscured
+        message a string representing the log line
+        seperator: a string representing which character is separating
         all fields in the log line (message)
     '''
     for field in fields:
-        p_data = re.search(field + "=(?P<pd>.*?)" + delim, msg).group("pd")
-        msg = re.sub(p_data, red, msg)
-    return msg
+        pattern = field + f"=.*?{seperator}"
+        message = re.sub(pattern, field + "=" + redaction + seperator, message)
+    return message
