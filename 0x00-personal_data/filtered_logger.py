@@ -68,7 +68,7 @@ def get_db() -> MySQLConnection:
 
 
 def main() -> None:
-    '''dony'''
+    '''start a connection and read from the database'''
     connection = get_db()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM users")
@@ -82,4 +82,3 @@ def main() -> None:
         logger.info(record)
     cursor.close()
     connection.close()
-
