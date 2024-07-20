@@ -26,7 +26,7 @@ def filter_datum(
     return message
 
 
-class RedactingFormatter(formatter: logging.Formatter):
+class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
 
@@ -44,7 +44,7 @@ class RedactingFormatter(formatter: logging.Formatter):
         return filter_datum(self.fields, self.REDACTION, log, self.SEPARATOR)
 
 
-def get_logger():
+def get_logger() -> logging.Logger:
     '''creates and returns a logger object'''
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
@@ -55,7 +55,7 @@ def get_logger():
     return logger
 
 
-def get_db():
+def get_db() -> MySQLConnection:
     '''connect to database'''
     user_ = getenv("PERSONAL_DATA_DB_USERNAME")
     passw = getenv("PERSONAL_DATA_DB_PASSWORD")
