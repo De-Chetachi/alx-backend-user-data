@@ -67,7 +67,7 @@ def get_db() -> MySQLConnection:
             )
 
 
-def main() -> NoneType:
+def main() -> None:
     '''dony'''
     connection = get_db()
     cursor = connection.cursor()
