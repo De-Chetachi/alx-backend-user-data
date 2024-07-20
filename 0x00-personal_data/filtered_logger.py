@@ -67,7 +67,7 @@ def get_db() -> MySQLConnection:
             )
 
 
-def main():
+def main() -> NoneType:
     '''dony'''
     connection = get_db()
     cursor = connection.cursor()
@@ -83,5 +83,3 @@ def main():
     cursor.close()
     connection.close()
 
-
-main()
