@@ -65,3 +65,23 @@ def get_db() -> MySQLConnection:
     return connect(
             user=user, password=password, host=host, database=db_name
             )
+
+
+def main():
+    '''dony'''
+    connection = get_db()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users")
+    logger = get_logger()
+    for row in cursor:
+        data = []
+        for title, value in zip(cursor.description, row):
+            data.append(f"{title[0]}={str(value)}")
+        record = "; ".join(data)
+
+        logger.info(record)
+    cursor.close()
+    connection.close()
+
+
+main()
