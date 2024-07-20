@@ -6,7 +6,7 @@ import logging
 from os import getenv
 from mysql.connector.connection import MySQLConnection
 
-PII_FIELDS = ["name", "email", "phone", "ssn", "password"]
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
 def filter_datum(
