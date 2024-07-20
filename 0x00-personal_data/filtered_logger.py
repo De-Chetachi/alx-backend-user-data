@@ -26,7 +26,7 @@ def filter_datum(
     return message
 
 
-class RedactingFormatter(logging.Formatter):
+class RedactingFormatter(formatter: logging.Formatter):
     """ Redacting Formatter class
         """
 
@@ -56,6 +56,7 @@ def get_logger():
 
 
 def get_db():
+    '''connect to database'''
     user_ = getenv("PERSONAL_DATA_DB_USERNAME")
     passw = getenv("PERSONAL_DATA_DB_PASSWORD")
     host_ = getenv("PERSONAL_DATA_DB_HOST")
