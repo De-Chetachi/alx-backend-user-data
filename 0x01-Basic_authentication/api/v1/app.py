@@ -18,7 +18,7 @@ auth = None
 if os.getenv("AUTH_TYPE") == "auth":
     auth = Auth()
 # elif os.getenv("AUTH_TYPE") == "basicauth":
-  #  auth = BasicAuth()
+    # auth = BasicAuth()
 
 
 @app.before_request
@@ -37,6 +37,7 @@ def bef_request():
 
     if not auth.current_user(request):
         abort(403)
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
