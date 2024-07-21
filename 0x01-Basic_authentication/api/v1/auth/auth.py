@@ -17,11 +17,11 @@ class Auth:
             return False
         return True
 
-
     def authorization_header(self, request=None) -> str:
         '''require authentication'''
-        return None
-
+        if not request:
+            return None
+        return request.headers.get("Authorization")
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''retrive user making a request'''
