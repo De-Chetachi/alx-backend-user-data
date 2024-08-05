@@ -10,6 +10,11 @@ class Auth:
         '''require authentication'''
         if not path or not excluded_paths or not len(excluded_paths):
             return True
+        if path.endswith('*'):
+            for path_ in excluded_paths:
+                if path_.startswith(path):
+                    return False
+            return True
 
         if not path.endswith('/'):
             path = path + '/'
