@@ -5,6 +5,7 @@ from base64 import b64decode
 import binascii
 from typing import TypeVar
 from models.user import User
+from models.base import DATA
 
 
 class BasicAuth(Auth):
@@ -55,11 +56,11 @@ class BasicAuth(Auth):
             return None
         if type(user_pwd) != str:
             return None
-        users = User.all()
-        if not users:
+        # users = User.all()
+        if User not in DATA:
             return None
         user_list = User.search({"email": user_email})
-        if len(user_list) == 0:
+        if not user_list:
             return None
         user = user_list[0]
         if not user.is_valid_password(user_pwd):
