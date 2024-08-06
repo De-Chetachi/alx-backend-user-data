@@ -38,7 +38,7 @@ def bef_request():
     request.current_user = auth.current_user(request)
     if not request.current_user:
         abort(403)
-    return (request.current_user).to_json()
+    return jsonify((request.current_user).to_json())
 
 
 @app.errorhandler(404)
