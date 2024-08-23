@@ -10,6 +10,7 @@ class SessionAuth(Auth):
     user_id_by_session_id = {}
     
     def create_session(self, user_id: str = None) -> str:
+        '''creates a session id and stores it'''
         if not user_id:
             return None
         if type(user_id) != str:
