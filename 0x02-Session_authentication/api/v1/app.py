@@ -31,8 +31,9 @@ def bef_request():
         return
     require_auth = auth.require_auth(
         request.path,
-        ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+        ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/', '/api/v1/auth_session/login/']
         )
+
     if not require_auth:
         return
     if not auth.authorization_header(request):
@@ -41,6 +42,10 @@ def bef_request():
     request.current_user = auth.current_user(request)
     if not request.current_user:
         abort(403)
+
+    if not auth.session_cookie(request):
+        abort(401)
+
     return jsonify((request.current_user).to_json())
 
 
